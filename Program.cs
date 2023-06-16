@@ -5,20 +5,51 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-        int x;
-        x = 123;
-        int y = 321;
-        int z = x + y;
-        double height = 300.5;
-        bool alive = true;
-        char symbol = '@';
-        String name = "SegunCodes";
-        Console.Write(z);
-        Console.WriteLine("Your height is "+ height + "cm");
-        Console.WriteLine("Are you alive? "+ alive);
-        Console.WriteLine("your symbol is "+ symbol);
-        Console.WriteLine("My name is "+ name);
-        // Console.ReadKey();
+        Random random = new Random();
+        bool playAgain = true;
+        int min = 1;
+        int max = 100;
+        int guess;
+        int number;
+        int guesses;
+        String response;
+
+        while (playAgain)
+        {
+            guess = 0;
+            guesses = 0;
+            response = "";
+            number = random.Next(min, max+1);
+
+            while (guess != number)
+            {
+                Console.WriteLine("Guess a number between " + min + " - " + max + " : ");
+                guess = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Guess: " + guess);
+
+                if (guess > number)
+                {
+                    Console.WriteLine(guess + " is to high!");
+                }
+                else if(guess < number){
+                    Console.WriteLine(guess + " is to low!");
+                }
+                guesses++;
+            }
+            Console.WriteLine("Number: " + number);
+            Console.WriteLine("You WIN");
+            Console.WriteLine("Guesses: " + guesses);
+            Console.WriteLine("Would you like to play again? (Y/N): ");
+            response = Console.ReadLine();
+            response = response.ToUpper();
+            if (response == "Y")
+            {
+                playAgain = true;
+            }else{
+                playAgain = false;
+            }
+        }
+        Console.WriteLine("Thanks for playing");
+        Console.ReadKey();
     }
 }
